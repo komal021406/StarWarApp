@@ -1,0 +1,47 @@
+<div class="container">
+  
+    <hr>
+    <div class="row">
+    <select class="form-control" style="width:200px" (change)="requestFilms($event.target.value)" >
+        <option *ngFor="let character of characters" 
+        [value]="character.url"  >{{character.name}}</option>
+       </select>
+    </div>
+    
+    <br>
+    <!-- <table class="table table-dark">
+      <tr>
+        <th>
+          Title
+        </th>
+        <th>
+          Release Date
+        </th>
+      </tr>
+        <tr *ngFor="let film of films">
+            <td>{{film.title}}</td>
+            <td>{{film.releaseDate|date:'fullDate'}}</td>
+        </tr>
+    </table> -->
+
+    <table mat-table [dataSource]="films" class="mat-elevation-z8">
+
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="title">
+        <th style="background-color:black;color: white;text-align: center" mat-header-cell *matHeaderCellDef> <b>Title</b> </th>
+        <td style="text-align: center" mat-cell *matCellDef="let f"> {{f.title}}  </td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="releaseDate">
+        <th  style="background-color:black;color: white;text-align: center" mat-header-cell *matHeaderCellDef><b> Release Date</b> </th>
+        <td  style="text-align: center" mat-cell *matCellDef="let f"> {{f.releaseDate|date:'fullDate'}} </td>
+      </ng-container>
+    
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    
+</div>
